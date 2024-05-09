@@ -52,7 +52,7 @@
 {{--</li>--}}
 
 
-@php $isActive = Request::is(['levels*', 'lessons*', 'parts*']); @endphp
+@php $isActive = Request::is(['levels*', 'unit*', 'parts*']); @endphp
 <li class="nav-item">
     <a class="nav-link menu-link{{$isActive ? ' collapsed' : '' }}"
        href="#curriculumsPage" data-bs-toggle="collapse"
@@ -68,6 +68,12 @@
                 <a href="{{ route('levels.index') }}"
                    class="nav-link{{Request::is('levels*') ? ' active' : '' }}"
                    data-key="t-course">Level
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('units.index') }}"
+                   class="nav-link{{Request::is('units*') ? ' active' : '' }}"
+                   data-key="t-unit">Unit
                 </a>
             </li>
             <li class="nav-item">

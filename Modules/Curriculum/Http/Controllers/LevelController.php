@@ -7,16 +7,16 @@ use Flash;
 use Illuminate\Http\Request;
 use Modules\Curriculum\Http\Requests\CreateCourseRequest;
 use Modules\Curriculum\Http\Requests\UpdateCourseRequest;
-use Modules\Curriculum\Repositories\Level\LevelRepository;
+use Modules\Curriculum\Repositories\Level\UnitRepository;
 use Modules\Curriculum\Services\Level\LevelService;
 
 class LevelController extends AppBaseController
 {
-    private LevelRepository $levelRepository;
+    private UnitRepository $levelRepository;
 
     public function __construct(
-        LevelService      $levelService,
-        LevelRepository    $levelRepository,
+        LevelService   $levelService,
+        UnitRepository $levelRepository,
     )
     {
         $this->levelRepository = $levelRepository;

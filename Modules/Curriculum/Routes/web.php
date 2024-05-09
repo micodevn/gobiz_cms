@@ -18,6 +18,7 @@ use Modules\Curriculum\Http\Controllers\ScheduleController;
 use Modules\Curriculum\Http\Controllers\TimeSlotController;
 
 Route::resource('levels', LevelController::class);
+Route::resource('units', \Modules\Curriculum\Http\Controllers\UnitController::class);
 Route::resource('parts', PartController::class);
 Route::resource('lessons', LessonController::class);
 Route::resource('schedules', ScheduleController::class);

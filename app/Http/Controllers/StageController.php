@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateStageRequest;
 use App\Repositories\StageRepository;
 use Flash;
 use Illuminate\Http\Request;
-use Modules\Curriculum\Repositories\Level\LevelRepository;
+use Modules\Curriculum\Repositories\Level\UnitRepository;
 
 class StageController extends AppBaseController
 {
@@ -16,7 +16,7 @@ class StageController extends AppBaseController
 
     private $courseRepository;
 
-    public function __construct(StageRepository $stageRepo, LevelRepository $courseRepo)
+    public function __construct(StageRepository $stageRepo, UnitRepository $courseRepo)
     {
         $this->stageRepository = $stageRepo;
         $this->courseRepository = $courseRepo;

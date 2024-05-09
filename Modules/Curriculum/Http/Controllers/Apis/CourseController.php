@@ -4,14 +4,14 @@ namespace Modules\Curriculum\Http\Controllers\Apis;
 
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Modules\Curriculum\Repositories\Level\LevelRepository;
+use Modules\Curriculum\Repositories\Level\UnitRepository;
 
 class CourseController extends AppBaseController
 {
 
-    private LevelRepository $courseRepository;
+    private UnitRepository $courseRepository;
 
-    public function __construct(LevelRepository $courseRepository)
+    public function __construct(UnitRepository $courseRepository)
     {
         $this->courseRepository = $courseRepository;
     }

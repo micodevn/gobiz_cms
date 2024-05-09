@@ -1,16 +1,16 @@
 <?php
 
-namespace Modules\Curriculum\Services\Level;
+namespace Modules\Curriculum\Services\Unit;
 
-use Modules\Curriculum\Repositories\Level\UnitRepository;
+use Modules\Curriculum\Repositories\Unit\UnitRepository;
 
-class LevelService
+class UnitService
 {
-    private UnitRepository $levelRepository;
+    private UnitRepository $unitRepository;
 
-    public function __construct(UnitRepository $levelRepository)
+    public function __construct(UnitRepository $unitRepository)
     {
-        $this->levelRepository = $levelRepository;
+        $this->unitRepository = $unitRepository;
     }
 
     public function store($value)
@@ -18,7 +18,7 @@ class LevelService
         try {
             // validate duplicate lesson
             //week //program_type //lesson_ids //position
-            $courseNew = $this->levelRepository->create($value);
+            $courseNew = $this->unitRepository->create($value);
             if ($courseNew) {
                 return true;
             }
@@ -31,11 +31,11 @@ class LevelService
 
     public function update($id, $value)
     {
-        $course = $this->levelRepository->find($id);
+        $course = $this->unitRepository->find($id);
         if (empty($course)) {
             return false;
         }
-        $course = $this->levelRepository->update($value, $id);
+        $course = $this->unitRepository->update($value, $id);
         if ($course) {
             return true;
         }

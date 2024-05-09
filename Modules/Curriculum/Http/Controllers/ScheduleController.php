@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redis;
 use Modules\Curriculum\Entities\ScheduleSlot;
 use Modules\Curriculum\Http\Requests\CreateScheduleRequest;
 use Modules\Curriculum\Http\Requests\UpdateScheduleRequest;
-use Modules\Curriculum\Repositories\Level\LevelRepository;
+use Modules\Curriculum\Repositories\Level\UnitRepository;
 use Modules\Curriculum\Repositories\Schedule\ScheduleRepository;
 use Modules\Curriculum\Repositories\Schedule\TimeSlotRepository;
 
@@ -21,7 +21,7 @@ class ScheduleController extends AppBaseController
     private $courseRepository;
     private $timeSlotRepository;
 
-    public function __construct(ScheduleRepository $scheduleRepo, LevelRepository $courseRepo, TimeSlotRepository $timeSlotRepository)
+    public function __construct(ScheduleRepository $scheduleRepo, UnitRepository $courseRepo, TimeSlotRepository $timeSlotRepository)
     {
         $this->scheduleRepository = $scheduleRepo;
         $this->courseRepository = $courseRepo;
