@@ -1,0 +1,8 @@
+{
+    "Province": true,
+    "Test": false,
+    "Curriculum": true,
+    "AdaptiveLearning": true,
+    "Game": true,
+    "Contest": true
+}

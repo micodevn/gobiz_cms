@@ -1,0 +1,11 @@
+{
+    "name": "Contest",
+    "alias": "contest",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Contest\\Providers\\ContestServiceProvider"
+    ],
+    "files": []
+}

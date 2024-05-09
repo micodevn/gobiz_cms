@@ -1,0 +1,7 @@
+{
+    "/js/contest/contest.js": "/js/contest/contest.js",
+    "/js/contest/contest-model.js": "/js/contest/contest-model.js",
+    "/css/contest/contest.css": "/css/contest/contest.css",
+    "/js/contest/BaseService.js": "/js/contest/BaseService.js",
+    "/js/contest/contest-service.js": "/js/contest/contest-service.js"
+}

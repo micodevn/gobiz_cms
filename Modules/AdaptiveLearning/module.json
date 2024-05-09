@@ -1,0 +1,11 @@
+{
+    "name": "AdaptiveLearning",
+    "alias": "adaptivelearning",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AdaptiveLearning\\Providers\\AdaptiveLearningServiceProvider"
+    ],
+    "files": []
+}

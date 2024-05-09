@@ -1,0 +1,19 @@
+{
+    "create": "Tạo mới",
+    "show": "Xem",
+    "list": "Xem danh sách",
+    "update": "Cập nhật",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "user": "Người dùng",
+    "question": "Câu hỏi",
+    "question_platform": "Dạng câu hỏi",
+    "VIDEO": "Video",
+    "IMAGE": "Ảnh",
+    "AUDIO": "Âm thanh",
+    "VIDEO_TIMESTAMP": "Video (Timestamp)",
+    "PDF": "PDF",
+    "file": "File",
+    "exercise": "Bài tập",
+    "liveClasses": "Lớp học trực tuyến"
+}

@@ -1,0 +1,264 @@
+/*
+Template Name: Velzon - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://themesbrand.com/
+Contact: support@themesbrand.com
+File: Custom Css File
+*/
+
+/* Loader */
+.cslder {
+    display: block;
+    text-align: center;
+    height: 20px;
+    position: relative;
+    display: none;
+    clear: both
+}
+
+.cslder .cswrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.csdot {
+    width: 5px;
+    height: 5px;
+    border: 1px solid #00a850;
+    background: #00a850;
+    border-radius: 50%;
+    float: left;
+    margin: 0 2px;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-animation: fx 1000ms ease infinite 0ms;
+    animation: fx 1000ms ease infinite 0ms
+}
+
+.csdot:nth-child(2) {
+    -webkit-animation: fx 1000ms ease infinite 300ms;
+    animation: fx 1000ms ease infinite 300ms
+}
+
+.csdot:nth-child(3) {
+    -webkit-animation: fx 1000ms ease infinite 600ms;
+    animation: fx 1000ms ease infinite 600ms
+}
+
+.csslder {
+    display: block;
+    text-align: center;
+    height: 20px;
+    position: relative;
+    clear: both
+}
+
+.csslder .csswrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.cssdot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #d90000;
+    background: #d90000;
+    border-radius: 50%;
+    float: left;
+    margin: 0 5px;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-animation: fx 1000ms ease infinite 0ms;
+    animation: fx 1000ms ease infinite 0ms
+}
+
+.cssdot:nth-child(2) {
+    -webkit-animation: fx 1000ms ease infinite 300ms;
+    animation: fx 1000ms ease infinite 300ms
+}
+
+.cssdot:nth-child(3) {
+    -webkit-animation: fx 1000ms ease infinite 600ms;
+    animation: fx 1000ms ease infinite 600ms
+}
+.loadingcover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,.75);
+    z-index: 100;
+}
+
+.loadingcover .csslder {
+    top: 50%
+}
+
+@-webkit-keyframes fx {
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes fx {
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+/* End loader */
+
+#back-to-top {
+    left: 28px;
+    right: unset;
+    z-index: 2000;
+}
+
+.table-responsive th, .table-responsive td{
+    vertical-align: middle;
+    text-align: center;
+}
+.program-type-item{
+    position: relative;
+}
+.program-type-item .remove-item-program{
+    position: absolute;
+    right: -5px;
+    width: fit-content;
+    top: 5px;
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
+}
+.program-type-item .remove-item-program:hover{
+    opacity: 0.6;
+}
+.around-add-item-program .add-item-program, .around-add-item-program .add-program-type-stage{
+    min-width: 140px;
+    cursor: pointer;
+    background: #4fcb89;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+}
+.around-add-item-program .add-item-program:hover, .around-add-item-program .add-program-type-stage:hover{
+    background-color: #3bad71;
+    border-color: #37a26a;
+}
+#modalChangeClass .current__class
+{
+    padding: 5px;
+    background: #6dc16d;
+    font-size: 18px;
+}
+.syllabus-detail-item .card-header .fa-trash{
+    color: red;
+}
+.syllabus-detail-item .card-header .fa-trash:hover{
+    color: #ef4141;
+}
+.preloader {
+    align-items: center;
+    background: rgb(23, 22, 22);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity 0.3s linear;
+    width: 100%;
+    z-index: 9999;
+}
+.unit-lession-group{
+    display: flex;
+}
+.timetable-program-group .program-item{
+    position: relative;
+}
+
+.timetable-remove-item-program-type:hover{
+    color: #8f4f4f;
+}
+.schedule-item .remove__stage{
+    color: red;
+    cursor: pointer;
+}
+
+.schedule-item .remove__stage:hover{
+    color: #8f4f4f;
+}
+
+/* Css input type checkbox */
+.checkbox__css .checkbox-group {
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 15px;
+}
+
+.checkbox__css .checkbox-group input {
+padding: 0;
+height: initial;
+width: initial;
+margin-bottom: 0;
+display: none;
+cursor: pointer;
+}
+
+.checkbox__css .checkbox-group label {
+position: relative;
+cursor: pointer;
+}
+
+.checkbox__css .checkbox-group label:before {
+content:'';
+-webkit-appearance: none;
+background-color: transparent;
+border: 2px solid #0079bf;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+padding: 10px;
+display: inline-block;
+position: relative;
+vertical-align: middle;
+cursor: pointer;
+margin-right: 5px;
+}
+
+.checkbox__css .checkbox-group input:checked + label:after {
+content: '';
+display: block;
+position: absolute;
+top: 2px;
+left: 9px;
+width: 6px;
+height: 14px;
+border: solid #0079bf;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.mb-grade .select2-container .select2-selection--single .select2-selection__clear{
+    display: none;
+}
+.syllabus_detail_group .select2-selection__clear,.timetable-program-group .select2-selection__clear{
+    display: none;
+}

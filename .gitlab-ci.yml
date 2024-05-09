@@ -1,0 +1,120 @@
+stages:
+ # - push-image-tag
+  - build-image
+  - push-image-tag
+variables:
+  MODULE_NAME: k12-cms
+  PROJECT_NAME: k12
+before_script:
+  - export IMAGE_TAG=$(date +%d.%m.%y)-${CI_COMMIT_SHA::8}
+
+## 1. Build image web (build full)
+.build-image-web:
+  stage: build-image
+  variables:
+    CI_REGISTRY_EDUCA: 192.168.1.205
+    CI_REGISTRY_EDUCA_USER: default
+    CI_REGISTRY_EDUCA_PASSWORD: default
+    IMAGE_NAME: $CI_REGISTRY_EDUCA/$PROJECT_NAME/$CI_COMMIT_REF_NAME/$MODULE_NAME
+    #RUNNERSERVER: build-shell
+  #tags:
+    #- $RUNNERSERVERa
+  script:
+    - echo hello $IMAGE_NAME:$IMAGE_TAG
+    - echo $CI_REGISTRY_EDUCA_USER
+    - echo $CI_REGISTRY_EDUCA_PASSWORD
+    - docker login -u $CI_REGISTRY_EDUCA_USER -p $CI_REGISTRY_EDUCA_PASSWORD  $CI_REGISTRY_EDUCA
+    - docker build  --cache-from $IMAGE_NAME:latest --tag $IMAGE_NAME:latest  --tag $IMAGE_NAME:$IMAGE_TAG -f Dockerfile .
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+  cache:
+    key: composer.json
+    paths:
+      - node_modules/
+      - vendor/
+#dev
+build-image-web-dev(build-image):
+  extends: .build-image-web
+  variables:
+    CI_REGISTRY_EDUCA: 192.168.1.205
+    CI_REGISTRY_EDUCA_USER: $CI_REGISTRY_USER_DEV
+    CI_REGISTRY_EDUCA_PASSWORD: $CI_REGISTRY_PASSWORD_DEV
+    RUNNERSERVER: build-shell
+  tags:
+    - build-shell
+  only:
+    refs:
+      - test
+#production
+build-image-web-prod(build-image):
+  extends: .build-image-web
+  variables:
+    #RUNNER-SERVER: deploy-prod
+    #GIT-BRANCH: master
+    CI_REGISTRY_EDUCA: hub.educa.vn
+    CI_REGISTRY_EDUCA_USER: $CI_REGISTRY_USER_PROD
+    CI_REGISTRY_EDUCA_PASSWORD: $CI_REGISTRY_PASSWORD_PROD
+    #RUNNER-SERVER: deploy-prod
+  tags:
+    - build-shell
+  #when: manual
+  only:
+    refs:
+      - master
+
+## 2. Push image tag
+.promote-to-environment:
+  stage: push-image-tag
+  image: kustomize-educa:v1
+  services:
+    - docker:dind   
+  variables:
+    GIT_BRANCH: test
+    MODULE: k12-cms
+    MANIFEST_URL: gitlab.edupiakid.vn/k12tech/cicd/k12-cms.git
+ #   MANIFEST_FULL_URL: http://oauth2:${MANIFEST_GITLAB_TOKEN}@${MANIFEST_URL}
+  script:
+    - echo "promote to environment -> ${MANIFEST_GITLAB_TOKEN} and ${MODULE}"
+    - git config --global user.email "cicd-dev@educa.vn"
+    - git config --global user.name "cicd-dev"
+    - rm -rf $MODULE || true
+    - echo "git clone from ${GIT_BRANCH} ${MANIFEST_FULL_URL}"
+    - git clone --branch ${GIT_BRANCH} ${MANIFEST_FULL_URL}
+    - cd $MODULE
+    - echo "images to dev environment -> $IMAGE_NAME:$IMAGE_TAG"
+    - ls -la
+    - kustomize edit set image $IMAGE_NAME:$IMAGE_TAG
+    - cat kustomization.yml
+    - git commit -am 'deploy argocd'
+    - git push $MANIFEST_FULL_URL
+
+#dev
+promote-to-environment-dev(push-image-tag):
+  extends: .promote-to-environment
+  variables:
+    #RUNNER-SERVER: deploy-dev
+    GIT_BRANCH: master
+    MODULE: k12-cms
+    MANIFEST_URL: gitlab.edupiakid.vn/k12tech/cicd/k12-cms.git
+    MANIFEST_FULL_URL: https://oauth2:${GIT_SECRET_TOKEN}@${MANIFEST_URL}
+    IMAGE_NAME: 192.168.1.205/k12/test/k12-cms
+  tags:
+    - deploy-shell
+  only:
+    refs:
+      - test
+#production
+promote-to-environment-prod(push-image-tag):
+  extends: .promote-to-environment
+  variables:
+    #RUNNER-SERVER: deploy-prod
+    GIT_BRANCH: master
+    MODULE: k12-cms
+    MANIFEST_URL: gitops.educa.vn/k12/k12-cms.git
+    #MANIFEST_GITLAB_TOKEN: ${MANIFEST_GITLAB_TOKEN_PROD}
+    MANIFEST_FULL_URL: http://oauth2:${MANIFEST_GITLAB_TOKEN}@${URL_MANIFEST}/k12/k12-cms.git
+    IMAGE_NAME: hub.educa.vn/k12/master/k12-cms
+  tags:
+    - deploy_pro
+  only:
+    refs:
+      - master
