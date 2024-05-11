@@ -27,7 +27,6 @@
 </div>
 <div class="form-group col-sm-6 mt-4">
     {!! Form::label('level_id', 'Level') !!}
-{{--    {!! Form::hidden('level_id', '') !!}--}}
     {!! Form::select('level_id', $levels, null, ['class' => 'form-control no-default api-select']) !!}
 </div>
 <div class="form-group col-sm-6 mt-4">

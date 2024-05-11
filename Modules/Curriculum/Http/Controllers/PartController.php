@@ -7,8 +7,8 @@ use Flash;
 use Illuminate\Http\Request;
 use Modules\Curriculum\Http\Requests\CreatePartRequest;
 use Modules\Curriculum\Http\Requests\UpdatePartRequest;
-use Modules\Curriculum\Repositories\Lesson\LessonRepository;
 use Modules\Curriculum\Repositories\Part\PartRepository;
+use Modules\Curriculum\Repositories\Unit\UnitRepository;
 use Modules\Curriculum\Services\Part\PartService;
 
 class PartController extends AppBaseController
@@ -16,13 +16,13 @@ class PartController extends AppBaseController
     /** @var PartRepository $partRepository*/
     private $partRepository;
 
-    private $lessonRepository;
+    private $unitRepository;
     private PartService $partService;
 
-    public function __construct(PartService $partService, PartRepository $partRepo, LessonRepository $lessonRepo)
+    public function __construct(PartService $partService, PartRepository $partRepo, UnitRepository $unitRepository)
     {
         $this->partRepository = $partRepo;
-        $this->lessonRepository = $lessonRepo;
+        $this->unitRepository = $unitRepository;
         $this->partService = $partService;
     }
 
@@ -31,11 +31,11 @@ class PartController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $parts = $this->partRepository->search(['title' => ['like', $request->name]])->orderBy('updated_at')->paginate(10);
-        $lessons = $this->lessonRepository->baseQuery()->orderBy('updated_at')->get()->pluck('title', 'id');
+        $parts = $this->partRepository->search(['name' => ['like', $request->name]])->orderBy('updated_at')->paginate(10);
+        $units = $this->unitRepository->baseQuery()->orderBy('updated_at')->get()->pluck('name', 'id');
 
         return view('curriculum::pages.parts.index')
-            ->with(['parts' => $parts, 'lessons' => $lessons]);
+            ->with(['parts' => $parts, 'units' => $units]);
     }
 
     /**
@@ -43,9 +43,10 @@ class PartController extends AppBaseController
      */
     public function create()
     {
-        $lessons = $this->lessonRepository->baseQuery()->get()->pluck('title', 'id');
+        $units = $this->unitRepository->baseQuery()->get()->pluck('name', 'id');
+//        dd($units);
 
-        return view('curriculum::pages.parts.create')->with('lessons', $lessons);
+        return view('curriculum::pages.parts.create')->with('units', $units);
     }
 
     /**
@@ -55,7 +56,7 @@ class PartController extends AppBaseController
     {
         $data = $request->validated();
         $part = $this->partService->store($data);
-        Flash::success('Part saved successfully.');
+        Flash::success('Part saved successfully !');
         return redirect(route('parts.index'));
     }
 
@@ -88,9 +89,10 @@ class PartController extends AppBaseController
             return redirect(route('parts.index'));
         }
 
-        $lessons = $this->lessonRepository->baseQuery()->get()->pluck('title', 'id');
+        $units = $this->unitRepository->baseQuery()->get()->pluck('name', 'id');
 
-        return view('curriculum::pages.parts.edit')->with(['part' => $part, 'lessons' => $lessons]);
+
+        return view('curriculum::pages.parts.edit')->with(['part' => $part, 'units' => $units]);
     }
 
     /**

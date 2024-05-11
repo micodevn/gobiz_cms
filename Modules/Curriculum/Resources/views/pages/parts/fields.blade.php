@@ -1,38 +1,44 @@
 @php
     $part = $part ?? new \Modules\Curriculum\Entities\Part();
-    $selectedExercises = $part->exercises;
+//    dd($part);
+//    $selectedExercises = $part->exercises ?? [];
+    $selectedExercises= [];
     $imageSelected = $part?->thumbnail ? [
     'url' => $part?->img_url,
     'name' => 'Search ảnh'
 ] : [];
+    $units = $units ?? [];
 @endphp
     <!-- Title Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('title', 'Tiêu đề:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control', 'required', 'maxlength' => 255]) !!}
+    {!! Form::label('name', 'Tiêu đề') !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'required', 'maxlength' => 255]) !!}
 </div>
 
 <!-- Description Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('description', 'Mô tả:') !!}
+    {!! Form::label('description', 'Mô tả') !!}
     {!! Form::text('description', null, ['class' => 'form-control', 'maxlength' => 1000]) !!}
 </div>
 
-<!-- Lesson Id Field -->
-{{--<div class="form-group col-sm-6">--}}
-{{--    {!! Form::label('lesson_id', 'Buổi học:') !!}--}}
-{{--    {!! Form::select('lesson_id', $lessons, null, ['class' => 'form-control', 'data-allow-clear' => 'true']) !!}--}}
-{{--</div>--}}
-
-<!-- Type Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('type', 'Loại part:') !!}
-    {!! Form::select('type', \Modules\Curriculum\Entities\Part::PART_TYPES, null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::label('code', 'Code') !!}
+    {!! Form::text('code', null, ['class' => 'form-control']) !!}
 </div>
+
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('unit_id', 'Unit') !!}
+    {!! Form::select('unit_id', $units, null, ['class' => 'form-control no-default api-select']) !!}
+</div>
+<!-- Type Field -->
+{{--<div class="form-group col-sm-6">--}}
+{{--    {!! Form::label('type', 'Loại part:') !!}--}}
+{{--    {!! Form::select('type', \Modules\Curriculum\Entities\Part::PART_TYPES, null, ['class' => 'form-control', 'required']) !!}--}}
+{{--</div>--}}
 
 <div class="form-group col-sm-4">
     <div class="mb-3">
-        {!! Form::label('thumbnail','Chọn ảnh:') !!}
+        {!! Form::label('thumbnail','Chọn ảnh') !!}
         <x-api-select
             :url="route('api.file.search')"
             name="thumbnail"
@@ -52,10 +58,10 @@
     @endif
 </div>
 
-<div class="form-group col-sm-3">
-    {!! Form::label('level', 'Độ khó:') !!}
-    {!! Form::select('level', \Modules\Curriculum\Entities\Part::PART_LEVEL, null, ['class' => 'form-control', 'required']) !!}
-</div>
+{{--<div class="form-group col-sm-3">--}}
+{{--    {!! Form::label('level', 'Độ khó:') !!}--}}
+{{--    {!! Form::select('level', \Modules\Curriculum\Entities\Part::PART_LEVEL, null, ['class' => 'form-control', 'required']) !!}--}}
+{{--</div>--}}
 
 
 <!-- Is Active Field -->
@@ -68,14 +74,14 @@
 </div>
 
 <!-- Exercise Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('exercises', 'Exercise:') !!}
-    <x-api-select
-        :attributes="['multiple' => 'multiple']"
-        :url="route('list-exercises')"
-        :selected="$selectedExercises"
-        emptyValue=""
-        name="exercise_id[]"
-        class="exercise_id"
-    ></x-api-select>
-</div>
+{{--<div class="form-group col-sm-6">--}}
+{{--    {!! Form::label('exercises', 'Exercise:') !!}--}}
+{{--    <x-api-select--}}
+{{--        :attributes="['multiple' => 'multiple']"--}}
+{{--        :url="route('list-exercises')"--}}
+{{--        :selected="$selectedExercises"--}}
+{{--        emptyValue=""--}}
+{{--        name="exercise_id[]"--}}
+{{--        class="exercise_id"--}}
+{{--    ></x-api-select>--}}
+{{--</div>--}}

@@ -2,13 +2,13 @@
 
 namespace Modules\Curriculum\Services\Level;
 
-use Modules\Curriculum\Repositories\Level\UnitRepository;
+use Modules\Curriculum\Repositories\Level\LevelRepository;
 
 class LevelService
 {
-    private UnitRepository $levelRepository;
+    private LevelRepository $levelRepository;
 
-    public function __construct(UnitRepository $levelRepository)
+    public function __construct(LevelRepository $levelRepository)
     {
         $this->levelRepository = $levelRepository;
     }

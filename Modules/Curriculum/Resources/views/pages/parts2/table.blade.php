@@ -6,10 +6,9 @@
                 <th>ID</th>
                 <th>Tiêu đề</th>
                 <th>Mô tả</th>
-                <th>Unit</th>
                 <th>Kích hoạt</th>
-{{--                <th>Buổi học</th>--}}
-{{--                <th>Loại part</th>--}}
+                <th>Buổi học</th>
+                <th>Loại part</th>
                 <th colspan="3">Thao tác</th>
             </tr>
             </thead>
@@ -17,12 +16,11 @@
             @foreach($parts as $part)
                 <tr>
                     <td>{{ $part->id }}</td>
-                    <td>{{ $part->name }}</td>
+                    <td>{{ $part->title }}</td>
                     <td>{{ $part->description }}</td>
-                    <td>{{ \Modules\Curriculum\Entities\Unit::find($part->unit_id)->name }}</td>
                     <td>{!! $part->is_active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-remove"></i>' !!}</td>
-{{--                    <td>{{ $part->lesson ? $part->lesson->title : '' }}</td>--}}
-{{--                    <td>{{ $part->type ? \Modules\Curriculum\Entities\Part::PART_TYPES[$part->type] : '' }}</td>--}}
+                    <td>{{ $part->lesson ? $part->lesson->title : '' }}</td>
+                    <td>{{ $part->type ? \Modules\Curriculum\Entities\Part::PART_TYPES[$part->type] : '' }}</td>
                     <td style="width: 120px">
                         {!! Form::open(['route' => ['parts.destroy', $part->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

@@ -5,7 +5,6 @@ namespace Modules\Curriculum\Services\Part;
 
 use App\Events\ChangeCurriculumProcessed;
 use App\Repositories\ExerciseRepository;
-use Illuminate\Support\Facades\Redis;
 use Modules\Curriculum\Repositories\Part\PartRepository;
 
 class PartService
@@ -26,10 +25,11 @@ class PartService
     {
         try {
             $part = $this->partRepository->create($value);
-            $this->syncExerciseRelation($part->id, $value['exercise_id']);
-            ChangeCurriculumProcessed::dispatch('INSERT', 'k12_part',  $part->id);
+//            $this->syncExerciseRelation($part->id, $value['exercise_id']);
+//            ChangeCurriculumProcessed::dispatch('INSERT', 'k12_part',  $part->id);
             return $part;
         } catch (\Exception $exception) {
+            dd($exception->getMessage());
             return false;
         }
     }
@@ -38,14 +38,15 @@ class PartService
         try {
             $lesson = $this->partRepository->find($id);
             if (empty($lesson)) {
-                \Flash::error('Lesson not found');
-                return redirect(route('lessons.index'));
+                \Flash::error('Part not found');
+                return redirect(route('parts.index'));
             }
             $part = $this->partRepository->update($value, $id);
-            $this->syncExerciseRelation($part->id, $value['exercise_id']);
-            ChangeCurriculumProcessed::dispatch('UPDATE', 'k12_part',  $part->id);
+//            $this->syncExerciseRelation($part->id, $value['exercise_id']);
+//            ChangeCurriculumProcessed::dispatch('UPDATE', 'k12_part',  $part->id);
             return $part;
         } catch (\Exception $exception) {
+            dd($exception->getMessage());
             return false;
         }
     }

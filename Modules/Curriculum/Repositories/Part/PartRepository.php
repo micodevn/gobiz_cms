@@ -8,11 +8,10 @@ use Modules\Curriculum\Entities\Part;
 class PartRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'title',
+        'name',
         'description',
         'is_active',
-        'lesson_id',
-        'type'
+        'unit_id',
     ];
 
     public function getFieldsSearchable(): array
