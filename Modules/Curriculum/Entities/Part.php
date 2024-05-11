@@ -34,6 +34,7 @@ class Part extends Model
         'is_active' => 'required|boolean',
         'unit_id' => 'required',
         'code' => 'required',
+        'position' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'

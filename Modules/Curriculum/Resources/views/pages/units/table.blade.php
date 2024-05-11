@@ -7,6 +7,7 @@
                 <th>Tên Unit</th>
                 <th class="w-25">Mô tả</th>
                 <th>Code</th>
+                <th>Position</th>
                 <th>Level</th>
                 <th>Thumbnail</th>
                 <th>Kích hoạt</th>
@@ -20,6 +21,7 @@
                     <td>{{ $unit->name }}</td>
                     <td><p>{{ $unit->description }}</p></td>
                     <td>{{ $unit->code }}</td>
+                    <td>{{ $unit->position }}</td>
                     <td>{{ \Modules\Curriculum\Entities\Level::find($unit->level_id)->title }}</td>
                     <td><img src="{{$unit->thumbnail}}" alt="" width="150px"></td>
                     <td>{!! $unit->is_active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-remove"></i>' !!}</td>

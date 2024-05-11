@@ -7,6 +7,7 @@
                 <th>Tên level</th>
                 <th class="w-25">Mô tả</th>
                 <th>Code</th>
+                <th>Position</th>
                 <th>Thumbnail</th>
                 <th>Kích hoạt</th>
                 <th colspan="3">Actions</th>
@@ -19,6 +20,7 @@
                     <td>{{ $level->title }}</td>
                     <td><p>{{ $level->description }}</p></td>
                     <td>{{ $level->code }}</td>
+                    <td>{{ $level->position }}</td>
                     <td><img src="{{$level->thumbnail}}" alt="" width="150px"></td>
                     <td>{!! $level->is_active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-remove"></i>' !!}</td>
                     <td style="width: 120px">

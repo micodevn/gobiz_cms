@@ -33,6 +33,7 @@ class Unit extends Model
         'description' => 'required|string|max:1000',
         'code' => 'required|string',
         'level_id' => 'required',
+        'position' => 'required',
         'thumbnail' => 'nullable',
         'is_active' => 'required|boolean',
         'deleted_at' => 'nullable',

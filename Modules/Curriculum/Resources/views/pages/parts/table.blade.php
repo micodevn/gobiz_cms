@@ -6,6 +6,7 @@
                 <th>ID</th>
                 <th>Tiêu đề</th>
                 <th>Mô tả</th>
+                <th>Position</th>
                 <th>Unit</th>
                 <th>Kích hoạt</th>
 {{--                <th>Buổi học</th>--}}
@@ -19,6 +20,7 @@
                     <td>{{ $part->id }}</td>
                     <td>{{ $part->name }}</td>
                     <td>{{ $part->description }}</td>
+                    <td>{{ $part->position }}</td>
                     <td>{{ \Modules\Curriculum\Entities\Unit::find($part->unit_id)->name }}</td>
                     <td>{!! $part->is_active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-remove"></i>' !!}</td>
 {{--                    <td>{{ $part->lesson ? $part->lesson->title : '' }}</td>--}}

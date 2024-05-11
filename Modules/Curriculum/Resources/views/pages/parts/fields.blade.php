@@ -30,6 +30,10 @@
     {!! Form::label('unit_id', 'Unit') !!}
     {!! Form::select('unit_id', $units, null, ['class' => 'form-control no-default api-select']) !!}
 </div>
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('position', 'Position') !!}
+    {!! Form::text('position', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
+</div>
 <!-- Type Field -->
 {{--<div class="form-group col-sm-6">--}}
 {{--    {!! Form::label('type', 'Loại part:') !!}--}}

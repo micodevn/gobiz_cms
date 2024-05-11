@@ -15,6 +15,7 @@ class Level extends Model
         'title',
         'description',
         'code',
+        'position',
         'thumbnail',
         'is_active',
     ];
@@ -30,6 +31,7 @@ class Level extends Model
         'title' => 'required|string|max:255',
         'description' => 'required|string|max:1000',
         'code' => 'required|string',
+        'position' => 'required',
         'thumbnail' => 'nullable',
         'is_active' => 'required|boolean',
         'deleted_at' => 'nullable',

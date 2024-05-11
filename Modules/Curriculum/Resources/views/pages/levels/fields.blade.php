@@ -21,9 +21,15 @@
 </div>
 
 <div class="form-group col-sm-6 mt-4">
-    {!! Form::label('code', 'Level Code :') !!}
+    {!! Form::label('code', 'Code') !!}
     {!! Form::text('code', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
 </div>
+
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('position', 'Position') !!}
+    {!! Form::text('position', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
+</div>
+
 <div class="form-group col-sm-6 mt-4">
     <div class="mb-3">
         {!! Form::label('thumbnail','Chọn ảnh:') !!}
