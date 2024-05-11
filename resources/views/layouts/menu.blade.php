@@ -76,16 +76,22 @@
                    data-key="t-unit">Unit
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('lessons.index') }}"
-                   class="nav-link{{Request::is('lessons*') ? ' active' : '' }}"
-                   data-key="t-lessons">Lesson
-                </a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a href="{{ route('lessons.index') }}"--}}
+{{--                   class="nav-link{{Request::is('lessons*') ? ' active' : '' }}"--}}
+{{--                   data-key="t-lessons">Lesson--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li class="nav-item">
                 <a href="{{ route('parts.index') }}"
                    class="nav-link{{Request::is('parts*') ? ' active' : '' }}"
                    data-key="t-parts">Part
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('activities.index') }}"
+                   class="nav-link{{Request::is('activities*') ? ' active' : '' }}"
+                   data-key="t-parts">Activity
                 </a>
             </li>
         </ul>

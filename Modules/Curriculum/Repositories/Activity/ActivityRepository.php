@@ -1,11 +1,12 @@
 <?php
 
-namespace Modules\Curriculum\Repositories\Part;
+namespace Modules\Curriculum\Repositories\Activity;
 
 use App\Repositories\BaseRepository;
+use Modules\Curriculum\Entities\Activity;
 use Modules\Curriculum\Entities\Part;
 
-class PartRepository extends BaseRepository
+class ActivityRepository extends BaseRepository
 {
     protected $fieldSearchable = [
         'name',
@@ -21,12 +22,6 @@ class PartRepository extends BaseRepository
 
     public function model(): string
     {
-        return Part::class;
-    }
-    public function baseQuery(): \Illuminate\Database\Eloquent\Builder
-    {
-        return $this->newQuery()
-            ->where('deleted_at', null)
-            ->orderBy('id', 'desc');
+        return Activity::class;
     }
 }
