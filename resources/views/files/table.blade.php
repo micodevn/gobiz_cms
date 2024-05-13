@@ -6,8 +6,7 @@
 {{--            <th>@lang('models/files.fields.icon')</th>--}}
             <th>@lang('models/files.fields.name')</th>
             <th>@lang('models/files.fields.type')</th>
-            <th>@lang('models/files.fields.size')</th>
-            <th>@lang('models/files.fields.label')</th>
+            <th>View</th>
             <th>@lang('models/files.fields.is_active')</th>
             <th>@lang('models/files.fields.created_at')</th>
             <th>@lang('models/files.fields.updated_at')</th>
@@ -17,15 +16,6 @@
         </thead>
         <tbody>
          @foreach($files as $file)
-             <?php
-             $labelName = '';
-             if(!empty($file->labels)) {
-                 $labelName = $file->labels->pluck('name')->toArray();
-
-                 $labelName = count($labelName) ?
-                    '[ '. implode(',',$labelName) .']' : '';
-             }
-             ?>
             <tr>
                 <td>{{ $file->id }}</td>
 {{--                <td >--}}
@@ -33,8 +23,22 @@
 {{--                </td>--}}
                 <td>{{ $file->name }}</td>
                 <td>{{ $file->type }}</td>
-                <td>{{ $file->size }}</td>
-                <td>{{ $labelName }}</td>
+                @php $path = $file->file_path; @endphp
+                <td>
+                    @if($file->type == "IMAGE")
+                        <img style="width: 100px" src="{{ $path }}" alt="">
+                    @elseif($file->type == "VIDEO")
+                        <video width="100" height="100" controls>
+                            <source src="{{$path}}" type="video/mp4">
+                            <source src="{{ $path }}" type="video/ogg">
+                        </video>
+                    @elseif($file->type == "AUDIO")
+                        <audio controls style="width: 100px">
+                            <source src="{{$path}}" type="audio/ogg">
+                            <source src="{{$path}}" type="audio/mpeg">
+                        </audio>
+                    @endif
+                </td>
                 <td><x-active-status :isActive="$file->is_active" /></td>
                 <td>{{ $file->created_at }}</td>
                 <td>{{ $file->updated_at }}</td>

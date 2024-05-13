@@ -42,11 +42,11 @@ class File extends BaseModel
         'VIDEO',
         'IMAGE',
         'AUDIO',
-        'VIDEO_TIMESTAMP',
-        'PDF',
-        'ASSET_BUNDLE',
-        'DOCUMENT',
-        'CLASSIN'
+//        'VIDEO_TIMESTAMP',
+//        'PDF',
+//        'ASSET_BUNDLE',
+//        'DOCUMENT',
+//        'CLASSIN'
     ];
 
 
@@ -88,7 +88,7 @@ class File extends BaseModel
         'type' => 'string',
         'file_path' => 'string',
         'is_active' => 'integer',
-        'size' => 'string',
+//        'size' => 'string',
         'created_by' => 'integer',
         'updated_by' => 'integer'
     ];

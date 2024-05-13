@@ -37,18 +37,6 @@
                         </div>
                         <div class="form-group mb-0 col-2">
                             <div class="form-group">
-                                <x-api-select
-                                    :attributes="['multiple' => 'multiple']"
-                                    :url="route('list-labels')"
-                                    emptyValue=""
-                                    name="labels[]"
-                                    placeholder="Search Labels"
-                                    class="abcde label-type-select"
-                                ></x-api-select>
-                            </div>
-                        </div>
-                        <div class="form-group mb-0 col-2">
-                            <div class="form-group">
                                 <select class="form-control select2bs4" name="is_active" style="width: 100%;">
                                     <option value="" selected="selected">Status</option>
                                     <option {{request()->get('status') === '1' ? 'selected' : ''}} value="1">Active

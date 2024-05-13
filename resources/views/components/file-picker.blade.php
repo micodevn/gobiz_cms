@@ -7,8 +7,14 @@
      */
 ?>
 <div class="row">
+
+    <!-- Type Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('type', __('models/files.fields.type').':') !!}
+        {!! Form::select('type', \App\Models\File::getTypeListOptions(), null, ['class' => 'form-control', 'id' => 'file-type-select']) !!}
+    </div>
     <!-- File Path Field -->
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-12 mt-4">
         {!! Form::label('file_path', __('models/files.fields.file_path').':') !!}
         <div class="input-group">
             <div class="custom-file">
@@ -22,21 +28,15 @@
           <small id="file_size"></small>
         </div>
     </div>
-
-    <!-- Type Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('type', __('models/files.fields.type').':') !!}
-        {!! Form::select('type', \App\Models\File::getTypeListOptions(), null, ['class' => 'form-control', 'id' => 'file-type-select']) !!}
-    </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <button type="button" class="btn btn-default mb-1" id="preview-btn" onclick="preview()">
-            <i class="fa fa-play-circle"></i> Xem trước
-        </button>
-    </div>
-</div>
+{{--<div class="row">--}}
+{{--    <div class="col-sm-12">--}}
+{{--        <button type="button" class="btn btn-default mb-1" id="preview-btn" onclick="preview()">--}}
+{{--            <i class="fa fa-play-circle"></i> Xem trước--}}
+{{--        </button>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 @push('page_scripts')
     <script>

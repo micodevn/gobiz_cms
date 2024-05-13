@@ -6,7 +6,7 @@
 <div id="form-child"></div>
 
 <!-- Name Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('name', __('models/files.fields.name').':') !!}
     {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'file-name']) !!}
 </div>
@@ -18,40 +18,40 @@
 {{--</div>--}}
 
 <!-- File Field -->
-<div class="col-sm-6">
+<div class="col-sm-12 mt-4">
     <x-file-picker :url="$file->file_path_url" :type="$file->type" name="file_path" id="file_path"></x-file-picker>
 </div>
 
 <!-- Icon File Path Field -->
-<div class="col-sm-6">
-    <x-image-picker name="icon_file_path" :url="$file->icon_file_path_url"></x-image-picker>
-</div>
-<div class="clearfix"></div>
+{{--<div class="col-sm-6">--}}
+{{--    <x-image-picker name="icon_file_path" :url="$file->icon_file_path_url"></x-image-picker>--}}
+{{--</div>--}}
+{{--<div class="clearfix"></div>--}}
 
 
 
 <!-- Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('url_static_options', __('models/files.fields.url_options').':') !!}
-    {!! Form::text('url_static_options', $file->file_path_url, ['class' => 'form-control' ,'id' => 'static_url', 'disabled' => true]) !!}
-</div>
+{{--<div class="form-group col-sm-6">--}}
+{{--    {!! Form::label('url_static_options', __('models/files.fields.url_options').':') !!}--}}
+{{--    {!! Form::text('url_static_options', $file->file_path_url, ['class' => 'form-control' ,'id' => 'static_url', 'disabled' => true]) !!}--}}
+{{--</div>--}}
 
 
 <!-- label Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('labels', __('models/files.fields.label').':') !!}
-    <x-api-select
-            :attributes="['multiple' => 'multiple']"
-            :url="route('list-labels')"
-            :selected="$labelsSelected"
-            class="api-select"
-            emptyValue=""
-            name="label_ids[]"
-    ></x-api-select>
-</div>
+{{--<div class="form-group col-sm-6">--}}
+{{--    {!! Form::label('labels', __('models/files.fields.label').':') !!}--}}
+{{--    <x-api-select--}}
+{{--            :attributes="['multiple' => 'multiple']"--}}
+{{--            :url="route('list-labels')"--}}
+{{--            :selected="$labelsSelected"--}}
+{{--            class="api-select"--}}
+{{--            emptyValue=""--}}
+{{--            name="label_ids[]"--}}
+{{--    ></x-api-select>--}}
+{{--</div>--}}
 
 <!-- 'bootstrap / Toggle Switch Is Active Field' -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12 mt-4">
     <div>
         {!! Form::label('is_active', __('models/files.fields.is_active').':', []) !!}
     </div>
@@ -59,9 +59,9 @@
     {!! Form::checkbox('is_active', 1, $file->is_active, ['data-toggle' => 'toggle']) !!}
 </div>
 
-<div class="col-sm-12" id="video-property">
-    <x-video-property :file="$file"></x-video-property>
-</div>
+{{--<div class="col-sm-12" id="video-property">--}}
+{{--    <x-video-property :file="$file"></x-video-property>--}}
+{{--</div>--}}
 
 @push('page_scripts')
     <script>

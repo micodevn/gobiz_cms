@@ -37,7 +37,7 @@ class FileController extends AppBaseController
      */
     public function index(FileFilters $filters)
     {
-        $files = $this->fileRepository->with('creator')->listByFiltersPaginate($filters);
+        $files = $this->fileRepository->listByFiltersPaginate($filters);
 
         return view('files.index')
             ->with('files', $files)

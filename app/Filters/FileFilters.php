@@ -18,7 +18,7 @@ class FileFilters extends QueryFilter
      * @var array
      */
     protected array $filterable = [
-        "keywords", "name", "type", "is_active", "id", "labels"
+         "name", "type", "is_active", "id"
     ];
 
     /**
@@ -84,15 +84,15 @@ class FileFilters extends QueryFilter
      * @param array $value
      * @return Builder
      */
-    public function filterLabels(array $value): Builder
-    {
-        $value = array_filter($value);
-
-        $fileID = ModelLabels::query()->whereIn('label_id', $value)->where('model_type', File::MODEL_TYPE)->pluck('model_id')->toArray();
-        if ($fileID) {
-            return $this->builder->whereIn('id', $fileID);
-        }
-        return $this->builder;
-    }
+//    public function filterLabels(array $value): Builder
+//    {
+//        $value = array_filter($value);
+//
+//        $fileID = ModelLabels::query()->whereIn('label_id', $value)->where('model_type', File::MODEL_TYPE)->pluck('model_id')->toArray();
+//        if ($fileID) {
+//            return $this->builder->whereIn('id', $fileID);
+//        }
+//        return $this->builder;
+//    }
 
 }
