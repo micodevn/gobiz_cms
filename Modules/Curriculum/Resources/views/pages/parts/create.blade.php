@@ -37,7 +37,7 @@
     </div>
 @endsection
 @push('page_scripts')
-    <script src="/storage/js/init-selected-api.js?v={{config('cdn.version_script')}}" defer></script>
+    <script src="{{ asset('storage/js/init-selected-api.js') }}"></script>
     <script>
         $(document).ready(function (){
             // IMAGE APP

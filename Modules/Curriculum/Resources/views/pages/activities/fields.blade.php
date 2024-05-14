@@ -10,29 +10,29 @@
     $parts = $parts ?? [];
 @endphp
     <!-- Title Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 mt-4">
     {!! Form::label('name', 'Tiêu đề') !!}
     {!! Form::text('name', null, ['class' => 'form-control', 'required', 'maxlength' => 255]) !!}
 </div>
 
 <!-- Description Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 mt-4">
     {!! Form::label('description', 'Mô tả') !!}
-    {!! Form::text('description', null, ['class' => 'form-control', 'maxlength' => 1000]) !!}
+    {!! Form::text('description', null, ['class' => 'form-control', 'maxlength' => 1000, 'required']) !!}
 </div>
 
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 mt-4">
     {!! Form::label('code', 'Code') !!}
-    {!! Form::text('code', null, ['class' => 'form-control']) !!}
+    {!! Form::text('code', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <div class="form-group col-sm-6 mt-4">
     {!! Form::label('part_id', 'Part') !!}
-    {!! Form::select('part_id', $parts, null, ['class' => 'form-control no-default api-select']) !!}
+    {!! Form::select('part_id', $parts, null, ['class' => 'form-control no-default api-select', 'required']) !!}
 </div>
 <div class="form-group col-sm-6 mt-4">
     {!! Form::label('position', 'Position') !!}
-    {!! Form::text('position', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
+    {!! Form::text('position', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
 </div>
 <!-- Type Field -->
 {{--<div class="form-group col-sm-6">--}}
@@ -40,7 +40,7 @@
 {{--    {!! Form::select('type', \Modules\Curriculum\Entities\Part::PART_TYPES, null, ['class' => 'form-control', 'required']) !!}--}}
 {{--</div>--}}
 
-<div class="form-group col-sm-4">
+<div class="form-group col-sm-4 mt-4">
     <div class="mb-3">
         {!! Form::label('thumbnail','Chọn ảnh') !!}
         <x-api-select

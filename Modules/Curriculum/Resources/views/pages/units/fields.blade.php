@@ -18,20 +18,20 @@
 <!-- Description Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('description', 'Mô tả:') !!}
-    {!! Form::text('description', null, ['class' => 'form-control', 'maxlength' => 1000]) !!}
+    {!! Form::text('description', null, ['class' => 'form-control', 'maxlength' => 1000, 'required']) !!}
 </div>
 
 <div class="form-group col-sm-6 mt-4">
     {!! Form::label('code', 'Unit code') !!}
-    {!! Form::text('code', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
+    {!! Form::text('code', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
 </div>
 <div class="form-group col-sm-6 mt-4">
     {!! Form::label('level_id', 'Level') !!}
-    {!! Form::select('level_id', $levels, null, ['class' => 'form-control no-default api-select']) !!}
+    {!! Form::select('level_id', $levels, null, ['class' => 'form-control no-default', 'required']) !!}
 </div>
 <div class="form-group col-sm-6 mt-4">
     {!! Form::label('position', 'Position') !!}
-    {!! Form::text('position', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
+    {!! Form::text('position', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
 </div>
 <div class="form-group col-sm-6 mt-4">
     <div class="mb-3">
@@ -65,7 +65,7 @@
     </div>
 </div>
 @push('page_scripts')
-    <script src="/storage/js/init-selected-api.js?v={{config('cdn.version_script')}}" defer></script>
+    <script src="{{ asset('storage/js/init-selected-api.js') }}"></script>
     {{--    <script>--}}
     {{--        $.ajaxSetup({--}}
     {{--            headers: {--}}

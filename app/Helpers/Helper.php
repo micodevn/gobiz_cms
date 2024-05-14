@@ -58,6 +58,7 @@ class Helper
 
     public static function makeResourceUrl($path): array|string
     {
+        return config('cdn.static_domain') . $path;
         if (str_contains($path, 'resource/video/word')) {
             $path = str_replace(' ', '-', $path);
         } else {

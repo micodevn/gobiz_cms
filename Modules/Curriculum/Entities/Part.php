@@ -12,6 +12,7 @@ class Part extends Model
 
     public $fillable = [
         'name',
+        'type',
         'description',
         'thumbnail',
         'position',
@@ -38,6 +39,13 @@ class Part extends Model
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
+    ];
+
+    const PART_TYPES = [
+        "VOCABULARY" => 'Từ vựng',
+        "SPEAK" => 'Luyện nói',
+        "COMMUNICATE" => 'Giao tiếp',
+        "PRACTICE" => 'Thực hành'
     ];
 
     public function lesson(): \Illuminate\Database\Eloquent\Relations\BelongsTo

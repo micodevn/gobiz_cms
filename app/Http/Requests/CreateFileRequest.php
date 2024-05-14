@@ -35,7 +35,6 @@ class CreateFileRequest extends FormRequest
     public function attributes(): array {
         return [
             "name" => "Tên File",
-//            "url_static_options" => "Link static"
         ];
     }
 }

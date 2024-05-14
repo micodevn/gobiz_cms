@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Modules\Curriculum\Http\Requests\CreatePartRequest;
 use Modules\Curriculum\Http\Requests\UpdatePartRequest;
 use Modules\Curriculum\Repositories\Part\PartRepository;
-use Modules\Curriculum\Repositories\Unit\UnitRepository;
+use Modules\Curriculum\Repositories\Unit\WodRepository;
 use Modules\Curriculum\Services\Part\PartService;
 
 class PartController extends AppBaseController
@@ -19,7 +19,7 @@ class PartController extends AppBaseController
     private $unitRepository;
     private PartService $partService;
 
-    public function __construct(PartService $partService, PartRepository $partRepo, UnitRepository $unitRepository)
+    public function __construct(PartService $partService, PartRepository $partRepo, WodRepository $unitRepository)
     {
         $this->partRepository = $partRepo;
         $this->unitRepository = $unitRepository;

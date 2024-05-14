@@ -16,17 +16,18 @@ class UpdateFileRequest extends FormRequest
     {
         return true;
     }
-
+    public function rules()
+    {
+        return File::$rules;
+    }
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
-    public function rules()
-    {
-        $rules = File::$rules;
-        $rules['file_path'] = 'nullable';
-        $rules['icon_file_path'] = 'nullable';
-        return $rules;
+    public function attributes(): array {
+        return [
+            "name" => "Tên File",
+        ];
     }
 }

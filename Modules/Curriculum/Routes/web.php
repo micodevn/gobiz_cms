@@ -19,6 +19,7 @@ use Modules\Curriculum\Http\Controllers\TimeSlotController;
 
 Route::resource('levels', LevelController::class);
 Route::resource('units', \Modules\Curriculum\Http\Controllers\UnitController::class);
+Route::resource('words', \Modules\Curriculum\Http\Controllers\WordController::class);
 Route::resource('parts', PartController::class);
 Route::resource('activities', \Modules\Curriculum\Http\Controllers\ActivityController::class);
 //Route::resource('lessons', LessonController::class);

@@ -39,14 +39,14 @@ class FileController extends Controller
                     }
                 }
 
-                if (\Arr::get($filters, 'label')) {
-                    $label = Label::query()->where('slug', \Arr::get($filters, 'label'))->select('id')->first();
-                    if ($label) {
-                        $query = $query->whereHas('labels', function ($query) use ($label) {
-                            $query->where('label_id', $label->id);
-                        });
-                    }
-                }
+//                if (\Arr::get($filters, 'label')) {
+//                    $label = Label::query()->where('slug', \Arr::get($filters, 'label'))->select('id')->first();
+//                    if ($label) {
+//                        $query = $query->whereHas('labels', function ($query) use ($label) {
+//                            $query->where('label_id', $label->id);
+//                        });
+//                    }
+//                }
 
                 $keywords && $query = $query->where("name", "like", "%$keywords%");
                 $id && $query = $query->where("id", $id);

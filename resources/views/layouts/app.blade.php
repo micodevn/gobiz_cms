@@ -4,12 +4,12 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>@yield('title') K12 CMS</title>
+    <title>@yield('title') GoBiz CMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_token" content="{{csrf_token()}}" />
     <!-- App favicon -->
     <link rel="stylesheet" type="text/html" href="{{asset('')}}">
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('images/fv.png')}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet">
     <link href="{{asset('/css/bootstrap4-toggle.min.css')}}" rel="stylesheet">
     <!-- Layout config Js -->
@@ -166,10 +166,10 @@
 <script src="{{ asset('assets/admin-lte/plugins/select2/js/select2.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="/storage/js/render-form-attribute.js"></script>
-<script src="/storage/js/form-helper.js"></script>
-<script src="/storage/js/qs.js"></script>
-<script src="/storage/js/file-helper.js"></script>
+<script src="{{ asset('storage/js/render-form-attribute.js') }}"></script>
+<script src="{{ asset('storage/js/form-helper.js') }}"></script>
+<script src="{{ asset('storage/js/qs.js') }}"></script>
+<script src="{{ asset('storage/js/file-helper.js') }}"></script>
 @stack('page_scripts')
 </body>
 </html>

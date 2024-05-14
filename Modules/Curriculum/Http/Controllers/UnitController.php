@@ -5,7 +5,6 @@ namespace Modules\Curriculum\Http\Controllers;
 use App\Http\Controllers\AppBaseController;
 use Flash;
 use Illuminate\Http\Request;
-use Modules\Curriculum\Entities\Level;
 use Modules\Curriculum\Http\Requests\UpdateUnitRequest;
 use Modules\Curriculum\Repositories\Level\LevelRepository;
 use Modules\Curriculum\Repositories\Unit\UnitRepository;
@@ -17,8 +16,8 @@ class UnitController extends AppBaseController
     private LevelRepository $levelRepository;
 
     public function __construct(
-        UnitService   $unitService,
-        UnitRepository $unitRepository,
+        UnitService     $unitService,
+        UnitRepository   $unitRepository,
         LevelRepository $levelRepository,
     )
     {
@@ -44,6 +43,7 @@ class UnitController extends AppBaseController
     public function create()
     {
         $levels = $this->levelRepository->baseQuery()->get()->pluck('title', 'id');
+
         return view('curriculum::pages.units.create', compact('levels'));
     }
 
@@ -91,7 +91,8 @@ class UnitController extends AppBaseController
     public function edit($id)
     {
         $unit = $this->unitRepository->find($id);
-        $levels = $this->levelRepository->baseQuery()->get()->pluck('title', 'id');
+        $levels = $this->levelRepository->baseQuery()->get()->pluck('title', 'id')->toArray();
+//        dd($levels);
         if (empty($unit)) {
             Flash::error('Unit not found !');
 

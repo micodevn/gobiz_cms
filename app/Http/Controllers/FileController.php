@@ -59,7 +59,7 @@ class FileController extends AppBaseController
     {
         try {
             $input = $request->validated();
-            $file = $this->fileRepository->createWithCache($input);
+            $file = $this->fileRepository->create($input);
 
             if ($request->wantsJson()) {
                 return $this->responseSuccess([
@@ -84,10 +84,7 @@ class FileController extends AppBaseController
      */
     public function show($id)
     {
-        $file = $this->fileRepository->with([
-            'videoTimestamps.icon',
-            'videoSubtitles'
-        ])->find($id);
+        $file = $this->fileRepository->find($id);
 
         if (empty($file)) {
             Flash::error(__('messages.not_found', ['model' => __('models/files.singular')]));
@@ -107,10 +104,7 @@ class FileController extends AppBaseController
      */
     public function edit($id)
     {
-        $file = $this->fileRepository->with([
-            'videoTimestamps.icon',
-            'videoSubtitles'
-        ])->find($id);
+        $file = $this->fileRepository->find($id);
 
         if (empty($file)) {
             Flash::error(__('messages.not_found', ['model' => __('models/files.singular')]));
@@ -133,8 +127,8 @@ class FileController extends AppBaseController
                 return redirect(route('files.index'));
             }
 
-            $this->fileRepository->updateWithCache($data, $id);
-            $this->syncWithQuestions($id);
+            $this->fileRepository->update($data, $id);
+//            $this->syncWithQuestions($id);
             Flash::success(__('messages.updated', ['model' => __('models/files.singular')]));
 
             return redirect(route('files.index'));

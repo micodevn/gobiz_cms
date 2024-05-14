@@ -1,65 +1,138 @@
 @php
-    $level = $level ?? new \Modules\Curriculum\Entities\Level();
-    $imageSelected = $level?->thumbnail ? [
+    $word = $word ?? new \Modules\Curriculum\Entities\Word();
+    $imageSelected = $word?->image ? [
     collect([
-        'id' => $level->thumbnail,
-        'url' => $level->thumbnail,
-    'name' => $level->thumbnail
+        'id' => $word->image,
+        'url' => $word->image,
+    'name' => $word->image
     ])
 ] : [];
+
+
+    $videoSelected = $word?->video ? [
+    collect([
+        'id' => $word->video,
+        'url' => $word->video,
+    'name' => $word->video
+    ])
+] : [];
+
+    $audioSelected = $word?->audio ? [
+    collect([
+        'id' => $word->audio,
+        'url' => $word->audio,
+        'name' => $word->audio
+    ])
+] : [];
+//    $levels = $levels ?? [];
 @endphp
     <!-- Title Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('title', 'Tên level ') !!}
-    {!! Form::text('title', null, ['class' => 'form-control', 'required', 'maxlength' => 255]) !!}
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('text', 'Text ') !!}
+    {!! Form::text('text', null, ['class' => 'form-control', 'required', 'maxlength' => 255]) !!}
+</div>
+
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('type', 'Type') !!}
+    {!! Form::select('type', \Modules\Curriculum\Entities\Word::WORD_TYPEs, null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <!-- Description Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('description', 'Mô tả:') !!}
-    {!! Form::text('description', null, ['class' => 'form-control', 'maxlength' => 1000]) !!}
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('description', 'Description') !!}
+    {!! Form::text('description', null, ['class' => 'form-control', 'maxlength' => 1000, 'required']) !!}
 </div>
 
 <div class="form-group col-sm-6 mt-4">
-    {!! Form::label('code', 'Code') !!}
-    {!! Form::text('code', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
+    {!! Form::label('en_description', 'En Description') !!}
+    {!! Form::text('en_description', null, ['class' => 'form-control', 'maxlength' => 1000, 'required']) !!}
 </div>
 
 <div class="form-group col-sm-6 mt-4">
-    {!! Form::label('position', 'Position') !!}
-    {!! Form::text('position', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
+    {!! Form::label('form', 'Form') !!}
+    {!! Form::text('form', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
 </div>
 
 <div class="form-group col-sm-6 mt-4">
-    {!! Form::label('words', 'Words') !!}
-    {!! Form::text('words', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
+    {!! Form::label('pronunciation', 'Pronunciation') !!}
+    {!! Form::text('pronunciation', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
 </div>
 
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('content', 'Content') !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control', 'maxlength' => 100, 'required', 'rows' => 3]) !!}
+</div>
+
+<div class="form-group col-sm-6 mt-4">
+    {!! Form::label('vn_content', 'VN Content') !!}
+    {!! Form::textarea('vn_content', null, ['class' => 'form-control', 'maxlength' => 100, 'required','rows' => 3]) !!}
+</div>
 
 <div class="form-group col-sm-6 mt-4">
     <div class="mb-3">
-        {!! Form::label('thumbnail','Chọn ảnh:') !!}
+        {!! Form::label('image','Image') !!}
         <x-api-select
             :url="route('api.file.search')"
-            name="thumbnail"
+            name="image"
             :selected="$imageSelected"
             placeholder="Search ảnh"
             class="file-list select-list"
             value-field="url"
         ></x-api-select>
     </div>
-    @if($level->thumbnail)
+    @if($word->image)
         <div class="mb-3">
-            <div style="width: 170px;height: 170px;">
-                <img src="{{ $level->thumbnail }}" alt="" class="img_exam_month pt-1"
+            <div style="width: 100px;">
+                <img src="{{ $word->image }}" alt="" class="img_exam_month pt-1"
                      style="width: 100%;height: 100%;object-fit: contain;background: gray;">
             </div>
         </div>
     @endif
 </div>
 
-<!-- Is Active Field -->
 <div class="form-group col-sm-6 mt-4">
+    <div class="mb-3">
+        {!! Form::label('video','Video') !!}
+        <x-api-select
+            :url="route('api.file.search')"
+            name="video"
+            :selected="$videoSelected"
+            placeholder="Search video"
+            class="file-list select-list"
+            value-field="url"
+        ></x-api-select>
+    </div>
+    @if($word->video)
+        <video width="100" height="100" controls>
+            <source src="{{$word->video}}" type="video/mp4">
+            <source src="{{ $word->video }}" type="video/ogg">
+        </video>
+    @endif
+</div>
+
+<div class="form-group col-sm-6 mt-4">
+    <div class="mb-3">
+        {!! Form::label('audio','Audio') !!}
+        <x-api-select
+            :url="route('api.file.search')"
+            name="audio"
+            :selected="$audioSelected"
+            placeholder="Search audo"
+            class="file-list select-list"
+            value-field="url"
+        ></x-api-select>
+    </div>
+    @if($word->audio)
+        <audio controls style="width: 100px">
+            <source src="{{$word->audio}}" type="audio/ogg">
+            <source src="{{$word->audio}}" type="audio/mpeg">
+        </audio>
+    @endif
+</div>
+
+
+<!-- Is Active Field -->
+<div class="form-group col-sm-12 mt-4">
     <div class="form-check">
         {!! Form::hidden('is_active', 0, ['class' => 'form-check-input']) !!}
         {!! Form::checkbox('is_active', '1', null, ['class' => 'form-check-input']) !!}
@@ -67,7 +140,7 @@
     </div>
 </div>
 @push('page_scripts')
-    <script src="/storage/js/init-selected-api.js?v={{config('cdn.version_script')}}" defer></script>
+    <script src="{{ asset('storage/js/init-selected-api.js') }}"></script>
     {{--    <script>--}}
     {{--        $.ajaxSetup({--}}
     {{--            headers: {--}}

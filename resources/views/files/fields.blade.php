@@ -1,7 +1,6 @@
 <?php
     $file = $file ?? new \App\Models\File();
-    $labelsSelected = $file->labels ? $file->labels->toArray() : null;
-//    dd($labelsSelected);
+    $labelsSelected = null;
 ?>
 <div id="form-child"></div>
 
@@ -21,7 +20,20 @@
 <div class="col-sm-12 mt-4">
     <x-file-picker :url="$file->file_path_url" :type="$file->type" name="file_path" id="file_path"></x-file-picker>
 </div>
-
+@php $path = $file ? $file->file_path : ''; @endphp
+@if($file->type == "IMAGE")
+    <img style="width: 100px" src="{{ $path }}" alt="">
+@elseif($file->type == "VIDEO")
+    <video width="100" height="100" controls>
+        <source src="{{$path}}" type="video/mp4">
+        <source src="{{ $path }}" type="video/ogg">
+    </video>
+@elseif($file->type == "AUDIO")
+    <audio controls style="width: 100px">
+        <source src="{{$path}}" type="audio/ogg">
+        <source src="{{$path}}" type="audio/mpeg">
+    </audio>
+@endif
 <!-- Icon File Path Field -->
 {{--<div class="col-sm-6">--}}
 {{--    <x-image-picker name="icon_file_path" :url="$file->icon_file_path_url"></x-image-picker>--}}

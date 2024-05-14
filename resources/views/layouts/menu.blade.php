@@ -105,7 +105,7 @@
        href="#mediaResourcePages" data-bs-toggle="collapse"
        role="button" aria-expanded="false" aria-controls="mediaResourcePages">
         <i class="mdi mdi-candy"></i> <span
-            data-key="t-sticker-topic-items">Media Resources</span>
+            data-key="t-sticker-topic-items">File Management</span>
     </a>
     <div
         class="collapse menu-dropdown{{$isActive ? ' show' : '' }}"
@@ -113,8 +113,30 @@
         <ul class="nav nav-sm flex-column">
             <li class="nav-item">
                 <a href="{{ route('files.index') }}"
-                   class="nav-link{{Request::is('schedules*') ? ' active' : '' }}"
+                   class="nav-link{{Request::is('files*') ? ' active' : '' }}"
                    data-key="t-files">File
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+@php $isActive = Request::is(['words*']); @endphp
+<li class="nav-item">
+    <a class="nav-link menu-link{{$isActive ? ' collapsed' : '' }}"
+       href="#mediaResourcePages" data-bs-toggle="collapse"
+       role="button" aria-expanded="false" aria-controls="mediaResourcePages">
+        <i class="mdi mdi-candy"></i> <span
+            data-key="t-sticker-topic-items">Grammar Management</span>
+    </a>
+    <div
+        class="collapse menu-dropdown{{$isActive ? ' show' : '' }}"
+        id="mediaResourcePages">
+        <ul class="nav nav-sm flex-column">
+            <li class="nav-item">
+                <a href="{{ route('words.index') }}"
+                   class="nav-link{{Request::is('words*') ? ' active' : '' }}"
+                   data-key="t-files">Word
                 </a>
             </li>
         </ul>
