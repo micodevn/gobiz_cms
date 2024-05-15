@@ -24,24 +24,6 @@
                         </div>
                         <div class="form-group mb-0 col-2">
                             <div class="form-group">
-                                <select name="parent_id" class="form-control select2bs4" style="width: 100%;">
-                                    <option
-                                        {{request()->get('parent') == '' || request()->get('parent') == null ? 'selected' : ''}} value="">
-                                        Choose Parent
-                                    </option>
-                                    @foreach($parents as $k=>$v)
-                                        @if($v->parent_id == null)
-                                            <option
-                                                {{request()->get('parent_id') ==  $v->id  ? 'selected' : ''}} value="{{ $v->id }}">{{ $v->name }}
-                                            </option>
-                                        @endif
-                                    @endforeach
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group mb-0 col-2">
-                            <div class="form-group">
                                 <select class="form-control select2bs4" name="is_active" style="width: 100%;">
                                     <option value="" selected="selected">Status</option>
                                     <option {{request()->get('status') === '1' ? 'selected' : ''}} value="1">Active

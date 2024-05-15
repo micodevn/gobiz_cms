@@ -25,75 +25,23 @@ class QuestionPlatformController extends AppBaseController
         $this->questionPlatformRepository = $questionPlatformRepo;
     }
 
-    /**
-     * Display a listing of the QuestionPlatform.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function index(QuestionPlatFormFilters $filter)
+    public function index(Request $request)
     {
         try {
-            $questionPlatforms = $this->questionPlatformRepository->with([
-                'creator',
-                'parent',
-                'image'
-            ])->listByFiltersPaginate($filter);
-
-            $this->questionPlatformRepository->resetModel();
-            $parents = $this->questionPlatformRepository->all([], null, null, ['id', 'name', 'parent_id', 'code']);
-            $platformTree = $parents->toArray();
-            $platformTree = array_map(function ($item) {
-                $item['text'] = [
-                    'name' => \Arr::get($item, 'name'),
-                    'contact' => [
-                        'val' => "ID : " . $item['id'] . " - CODE : " . $item['code'],
-                        'href' => '/questionPlatforms/' . $item['id'] . '/edit',
-                        'target' => "_self"
-                    ]
-                ];
-
-
-                return $item;
-            }, $platformTree);
-            $platformTree = Helper::buildTree($platformTree, null);
-            $platformTree = [
-                'id' => null,
-                'text' => [
-                    'name' => 'Platform'
-                ],
-                'children' => $platformTree
-            ];
-
+            $questionPlatforms = $this->questionPlatformRepository->orderBy('updated_at', 'DESC')->paginate(10);
             return view('question_platforms.index')
-                ->with('questionPlatforms', $questionPlatforms)
-                ->with('platformTree', $platformTree)
-                ->with(
-                    'parents', $parents
-                );
+                ->with(['questionPlatforms' => $questionPlatforms]);
         } catch (\Exception $e) {
             throw new \Exception($e);
         }
     }
 
-    /**
-     * Show the form for creating a new QuestionPlatform.
-     *
-     * @return Response
-     */
+
     public function create()
     {
         return view('question_platforms.create');
     }
 
-    /**
-     * Store a newly created QuestionPlatform in storage.
-     *
-     * @param CreateQuestionPlatformRequest $request
-     *
-     * @return Response
-     */
     public function store(CreateQuestionPlatformRequest $request)
     {
         $input = $request->all();
@@ -125,34 +73,18 @@ class QuestionPlatformController extends AppBaseController
         return view('question_platforms.show')->with('questionPlatform', $questionPlatform);
     }
 
-    /**
-     * Show the form for editing the specified QuestionPlatform.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
     public function edit($id)
     {
         $questionPlatform = $this->questionPlatformRepository->find($id);
-        $hasChildren = $questionPlatform->children->count() > 0;
         if (empty($questionPlatform)) {
             Flash::error(__('messages.not_found', ['model' => __('models/questionPlatforms.singular')]));
 
             return redirect(route('questionPlatforms.index'));
         }
 
-        return view('question_platforms.edit')->with('questionPlatform', $questionPlatform)->with('hasChildren', $hasChildren);
+        return view('question_platforms.edit')->with('questionPlatform', $questionPlatform);
     }
 
-    /**
-     * Update the specified QuestionPlatform in storage.
-     *
-     * @param int $id
-     * @param UpdateQuestionPlatformRequest $request
-     *
-     * @return Response
-     */
     public function update($id, UpdateQuestionPlatformRequest $request)
     {
         $questionPlatform = $this->questionPlatformRepository->find($id);
@@ -169,16 +101,6 @@ class QuestionPlatformController extends AppBaseController
 
         return redirect(route('questionPlatforms.index'));
     }
-
-    /**
-     * Remove the specified QuestionPlatform from storage.
-     *
-     * @param int $id
-     *
-     * @return Response
-     * @throws \Exception
-     *
-     */
     public function destroy($id)
     {
         $questionPlatform = $this->questionPlatformRepository->find($id);
@@ -256,8 +178,8 @@ class QuestionPlatformController extends AppBaseController
 
         $result = array_values($result);
 
-        $result = \Arr::prepend($result,[
-           'text' => 'Other Platform',
+        $result = \Arr::prepend($result, [
+            'text' => 'Other Platform',
             'children' => [
                 ExerciseAttribute::OTHER_PLATFORM
             ]

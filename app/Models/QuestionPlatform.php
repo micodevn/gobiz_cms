@@ -30,13 +30,8 @@ class QuestionPlatform extends Model
     public $fillable = [
         'name',
         'code',
-        'parent_id',
-        'image_id',
         'is_active',
-        'media_types',
-        'attribute_options',
-        'use_new_platform',
-        'doc_link'
+        'description',
     ];
 
     /**
@@ -47,11 +42,7 @@ class QuestionPlatform extends Model
     protected $casts = [
         'name' => 'string',
         'code' => 'string',
-        'parent_id' => 'integer',
-        'image_id' => 'integer',
         'is_active' => 'boolean',
-        'media_types' =>'string',
-        'doc_link' =>'string',
     ];
 
     /**
@@ -62,9 +53,6 @@ class QuestionPlatform extends Model
     public static $rules = [
         'name' => 'required',
         'code' => 'required|integer',
-        'doc_link' => 'required',
-        'parent_id' => 'nullable',
-        'image_id' => 'nullable',
         'is_active' => 'required'
     ];
 

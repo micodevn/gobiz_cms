@@ -6,10 +6,8 @@
             {{--            <th>@lang('models/questionPlatforms.fields.image')</th>--}}
             <th>@lang('models/questionPlatforms.fields.name')</th>
             <th>@lang('models/questionPlatforms.fields.code')</th>
-            <th>@lang('models/questionPlatforms.fields.parent')</th>
-            <th>@lang('models/questionPlatforms.fields.is_active')</th>
             <th>@lang('models/questionPlatforms.fields.description')</th>
-            <th>@lang('models/questionPlatforms.fields.created_at')</th>
+            <th>@lang('models/questionPlatforms.fields.is_active')</th>
             <th>@lang('models/questionPlatforms.fields.updated_at')</th>
             <th colspan="3">@lang('crud.action')</th>
         </tr>
@@ -23,10 +21,8 @@
 {{--                </td>--}}
                 <td>{{ $questionPlatform->name }}</td>
                 <td>{{ $questionPlatform->code }}</td>
-                <td>{{ $questionPlatform->parent_name }}</td>
-                <td><x-active-status :isActive="$questionPlatform->is_active" /></td>
                 <td>{{ $questionPlatform->description }}</td>
-                <td>{{ $questionPlatform->created_at }}</td>
+                <td><x-active-status :isActive="$questionPlatform->is_active" /></td>
                 <td>{{ $questionPlatform->updated_at }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['questionPlatforms.destroy', $questionPlatform->id], 'method' => 'delete']) !!}
